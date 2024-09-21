@@ -1,4 +1,4 @@
-void main(){
+void main() {
 
     myFunc(){
         print('Functions in dart! 😎');
