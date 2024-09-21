@@ -45,7 +45,7 @@ const restaurant = {
 
   orderPasta(ing1, ing2, ing3) {
     console.log(
-      `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
 
@@ -133,7 +133,7 @@ sectionHeading('Working with Strings part-2');
 // Working With Strings - Part 2
 
 // Split and join
-console.log('a+very+nice+string'.split('+'));
+console.log('a+very+nice+string'.split('+').join(' '));
 console.log('Jonas Schmedtmann'.split(' '));
 
 const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
@@ -147,6 +147,7 @@ const capitalizeName = function (name) {
   for (const n of names) {
     // namesUpper.push(n[0].toUpperCase() + n.slice(1));
     namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+    // console.log(namesUpper);
   }
   console.log(namesUpper.join(' '));
 };
@@ -157,16 +158,19 @@ capitalizeName('jonas schmedtmann');
 // Padding
 const message = 'Go to gate 23!';
 console.log(message.padStart(20, '+').padEnd(30, '+'));
+// console.log(message.padStart(20, '+'));
 console.log('Jonas'.padStart(20, '+').padEnd(30, '+'));
 
+// Real world use case
 const maskCreditCard = function (number) {
   const str = number + '';
   const last = str.slice(-4);
+  // console.log(last);
   return last.padStart(str.length, '*');
 };
 
 console.log(maskCreditCard(64637836));
-console.log(maskCreditCard(43378463864647384));
+console.log(maskCreditCard(43378463864647));
 console.log(maskCreditCard('334859493847755774747'));
 
 // Repeat
@@ -221,7 +225,7 @@ console.log(plane.includes('Boeing'));
 console.log(plane.startsWith('Airb'));
 
 if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
-  console.log('Part of the NEW ARirbus family');
+  console.log('Part of the NEW Airbus family');
 }
 
 // Practice exercise
@@ -289,17 +293,52 @@ challengeHeading(3);
 // Coding Challenge #3
 
 /* 
-Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. 
-The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+Let's continue with our football betting app! This time, we have a map 
+with a log of the events that happened during the game. 
+The values are the events themselves, and the keys are 
+the minutes in which each event happened (a football game
+has 90 minutes plus some extra time).
 
 1. Create an array 'events' of the different game events that happened (no duplicates)
-2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
-3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
-4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. 
+  So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" 
+  (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or 
+  second half (after 45 min) of the game, like this:
       [FIRST HALF] 17: ⚽️ GOAL
 
 GOOD LUCK 😀
 */
+
+/**
+ * QUICK SUMMARY: Map
+ * Syntax: const map = new Map();
+ *
+ * Map is a collection of key value pairs where both keys and values can be of any
+ * data type. This is the key distinction to regular javascript objects whose keys are
+ * limited to strings and symbols.
+ *
+ * Key features of Map.
+ *  (i) Any value can be used as either a key or value.
+ *  (ii) Insertion order is maintained.
+ *  (iii) Provides methods for iteration and manipulation.
+ *
+ * Scenarios where Map() is a better option compared to objects.
+ *
+ * 1. When keys are not strings or symbols.
+ *    You might be needing keys of various data types, such as objects, functions,
+ *    or other primitive values rather than strings or symbols which regular objects
+ *    are limited to.
+ *    Example: Storing DOM elements or functions as keys.
+ *
+ * 2. When you need a guaranteed key order.
+ * 3. When performance matters with frequent key-value pair additions and deletions.
+ * 4. When you need the size of a collection (It has a built-in  .size property).
+ * 5. When you need better performance with large datasets.
+ * 6. When you need better iteration capabilities.
+ * 7. When you want to avoid potential key collisions with prototype properties.
+ */
 
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
@@ -353,11 +392,6 @@ const question = new Map([
 ]);
 console.log(question);
 
-// Convert object to map
-console.log(Object.entries(openingHours));
-const hoursMap = new Map(Object.entries(openingHours));
-console.log('Opening Hrs Map:', hoursMap);
-
 // Quiz app
 console.log(question.get('question'));
 for (const [key, value] of question) {
@@ -366,8 +400,15 @@ for (const [key, value] of question) {
 // const answer = Number(prompt('Your answer'));
 const answer = 3;
 console.log(answer);
-
 console.log(question.get(question.get('correct') === answer));
+
+// Convert object to map
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log('Opening Hrs Map:', hoursMap);
+
+//Get the first element in a map.
+console.log(hoursMap.entries().next());
 
 // Convert map to array
 console.log('Map to Array:', [...question]);
@@ -455,15 +496,19 @@ challengeHeading(2);
 /* 
 Let's continue with our football betting app!
 
-1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
-2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+1. Loop over the game.scored array and print each player name to the console, 
+   along with the goal number (Example: "Goal 1: Lewandowski")
+2. Use a loop to calculate the average odd and log it to the console 
+   (We already studied how to calculate averages, you can go check if you don't remember)
 3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
       Odd of victory Bayern Munich: 1.33
       Odd of draw: 3.25
       Odd of victory Borrussia Dortmund: 6.5
-Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+Get the team names directly from the game object, don't hardcode them (except for "draw"). 
+HINT: Note how the odds and the game objects have the same property names 😉
 
-BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+BONUS: Create an object called 'scorers' which contains the names of the players who scored 
+       as properties, and the number of goals as the value. In this game, it will look like this:
       {
         Gnarby: 1,
         Hummels: 1,
@@ -553,8 +598,13 @@ console.log(openingHours);
 console.log('OpeningHrs keys:', properties);
 
 let openStr = `We are open on ${properties.length} days: `;
+
+console.log(properties[properties.length - 1]);
 for (const day of properties) {
-  openStr += `${day}, `;
+  const dayOpen =
+    day === properties[properties.length - 1] ? `${day}.` : `${day},`;
+  // openStr += `${day}, `;
+  openStr += dayOpen;
 }
 console.log(openStr);
 
@@ -575,7 +625,7 @@ for (const [day, { open, close }] of entries) {
 // Optional Chaining
 console.log('Optional chaining');
 if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log('Without O chain:', restaurant.openingHours.mon.open);
+  console.log('Without Optional chaining:', restaurant.openingHours.mon.open);
 
 // console.log(restaurant.openingHours.mon.open);
 
@@ -598,7 +648,7 @@ console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
 // Arrays
 const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
 // const users = [];
-
+console.log(users);
 console.log(users[0]?.name ?? 'User array empty');
 
 if (users.length > 0) console.log(users[0].name);
@@ -664,6 +714,7 @@ console.log(allPlayers);
 const players1Final = [...players1, 'Thiago', 'Coutinho', 'Periscic'];
 
 // 5.
+console.log(game.odds);
 const {
   odds: { team1, x: draw, team2 },
 } = game;
@@ -729,6 +780,12 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // Rest Pattern and Parameters
 // 1) Destructuring
 /*
+
+Difference between SPREAD and REST operator is simple terms
+Spread is used to expand items while rest is used to gather 
+items.
+
+
 // SPREAD, because on RIGHT side of =
 const arr = [1, 2, ...[3, 4]];
 

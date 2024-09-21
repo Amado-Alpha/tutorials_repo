@@ -39,6 +39,7 @@ class Running extends Workout {
 
   calcPace() {
     // min/km
+    // Is this an okay way to initialize a variable. this.pace ?
     this.pace = this.duration / this.distance;
     return this.pace;
   }
@@ -135,8 +136,11 @@ class App {
 
   _hideForm() {
     // Empty inputs
-    inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value =
-      '';
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        '';
 
     form.style.display = 'none';
     form.classList.add('hidden');

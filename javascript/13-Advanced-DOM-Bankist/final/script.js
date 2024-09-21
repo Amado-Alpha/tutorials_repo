@@ -64,6 +64,7 @@ btnScrollTo.addEventListener('click', function (e) {
   //   behavior: 'smooth',
   // });
 
+  // window.scrollTo(s1coords.left, s1coords.top);
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
@@ -165,7 +166,7 @@ const revealSection = function (entries, observer) {
   if (!entry.isIntersecting) return;
 
   entry.target.classList.remove('section--hidden');
-  observer.unobserve(entry.target);
+  observer.unobserve(entry.target); // For performance
 };
 
 const sectionObserver = new IntersectionObserver(revealSection, {

@@ -1,8 +1,11 @@
 'use strict';
 
+// Selecting elements
+
 ///////////////////////////////////////
 // Modal window
 
+/*
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -29,3 +32,4 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+*/
